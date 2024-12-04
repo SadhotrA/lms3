@@ -14,7 +14,11 @@ app.get('/ping', (req, res) => {
 });
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors(
+    {
+        origin:["https:"]
+    }
+));
 app.use('/auth', AuthRouter);
 app.use('/products', ProductRouter);
 
