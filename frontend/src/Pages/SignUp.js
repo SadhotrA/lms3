@@ -39,7 +39,7 @@ function Signup() {
             const { success, message, error } = result;
             if (success) {
                 handleSuccess(message);
-                setTimeout(() => {
+                setTimeout(() => {  
                     navigate('/login')
                 }, 1000)
             } else if (error) {
