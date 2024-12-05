@@ -14,7 +14,14 @@ app.get('/ping', (req, res) => {
 });
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+    origin: 'https://lms3ui-vishals-projects-1f0757c0.vercel.app',
+    methods: 'GET, POST, PUT, DELETE, OPTIONS',
+    allowedHeaders: 'Content-Type, Authorization',
+    credentials: true, // If cookies or authentication tokens are involved
+}
+
+));
 app.use('/auth', AuthRouter);
 app.use('/products', ProductRouter);
 
