@@ -22,7 +22,7 @@ function Home() {
 
     const fetchProducts = async () => {
         try {
-            const url = "https://lms3api-vishals-projects-1f0757c0.vercel.app//products";
+            const url = "https://lms3api-vishals-projects-1f0757c0.vercel.app/products";
             const headers = {
                 headers: {
                     'Authorization': localStorage.getItem('token')
