@@ -12,6 +12,7 @@ function Signup() {
     })
 
     const navigate = useNavigate();
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         console.log(name, value);
@@ -24,19 +25,24 @@ function Signup() {
         e.preventDefault();
         const { name, email, password } = signupInfo;
         if (!name || !email || !password) {
-            return handleError('name, email and password are required')
+            return handleError('name, email and password are required');
         }
+
         try {
-            const url = `https://lms3api-vishals-projects-1f0757c0.vercel.app/auth/signup`;
+            // Use the CORS proxy to bypass CORS issues
+            const url = `https://cors-anywhere.herokuapp.com/https://lms3api-vishals-projects-1f0757c0.vercel.app/auth/signup`;
+
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(signupInfo)
+                body: JSON.stringify(signupInfo),
             });
+
             const result = await response.json();
             const { success, message, error } = result;
+
             if (success) {
                 handleSuccess(message);
                 setTimeout(() => {  
@@ -53,6 +59,7 @@ function Signup() {
             handleError(err);
         }
     }
+
     return (
         <div className='container'>
             <h1>Signup</h1>
@@ -98,4 +105,4 @@ function Signup() {
     )
 }
 
-export default Signup
+export default Signup;

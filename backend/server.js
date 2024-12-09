@@ -15,11 +15,9 @@ app.get('/ping', (req, res) => {
 
 app.use(bodyParser.json());
 app.use(cors({
-    origin: 'https://lms3ui-vishals-projects-1f0757c0.vercel.app',
-    methods: 'GET, POST, PUT, DELETE, OPTIONS',
-    allowedHeaders: 'Content-Type, Authorization',
-    credentials: true, // If cookies or authentication tokens are involved
-}
+    origin: 'http://localhost:3000', // Add your frontend URL here
+    methods: ['GET', 'POST'], // List allowed methods if needed
+  }
 
 ));
 app.use('/auth', AuthRouter);
