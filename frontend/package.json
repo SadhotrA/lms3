@@ -26,6 +26,7 @@
       "react-app/jest"
     ]
   },
+  
   "browserslist": {
     "production": [
       ">0.2%",
@@ -42,5 +43,7 @@
   "main": "server.js",
   "devDependencies": {},
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "proxy": "https://lms3api-vishals-projects-1f0757c0.vercel.app"
+
 }
