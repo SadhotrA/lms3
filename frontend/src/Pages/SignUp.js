@@ -35,7 +35,7 @@ function Signup() {
 
         try {
             setIsLoading(true); // Start loading
-            const url = `https://lms3api-vishals-projects-1f0757c0.vercel.app/auth/signup`;
+            const url = `http://localhost:8080/auth/signup`;
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
