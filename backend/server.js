@@ -15,19 +15,25 @@ const allowedOrigins = [
   'https://lms3ui-vishals-projects-1f0757c0.vercel.app' // Production frontend
 ];
 
-// Use CORS middleware
-app.use(cors({
-  origin: (origin, callback) => {
-    // Allow requests with no origin (like mobile apps or Postman) or from allowed origins
-    if (!origin || allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
-    return callback(new Error('Not allowed by CORS'));
-  },
-  methods: 'GET,POST,PUT,DELETE,OPTIONS',
-  allowedHeaders: 'Content-Type,Authorization',
-  credentials: true, // Allow cookies if needed
-}));
+// CORS Middleware
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+
+  // Check if the origin is allowed
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin); // Allow CORS from specific origins
+  }
+  
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+  // Handle preflight request (OPTIONS)
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  next();
+});
 
 // Middleware
 app.use(bodyParser.json());
